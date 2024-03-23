@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./user.entity";
 
-@Entity()
+@Entity("appointments")
 export class Appointment
 {
     @PrimaryGeneratedColumn()
@@ -14,5 +15,11 @@ export class Appointment
 
     @Column()
     appointment_time: string;
+
+    @Column()
+    patient_email: string;
+
+    @ManyToOne(() => User, user => user.appointment)
+    user: User;
 
 }

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Feedback } from '../entities/feedback.entity';
 import { CreateFeedbackDto } from './dto/create-feedback.dto';
+import {Session} from 'express-session';
 
 @Injectable()
 export class FeedbackService {
@@ -13,8 +14,9 @@ export class FeedbackService {
     ) {}
 
 
-    async create(createFeedbackDto: CreateFeedbackDto)
+    async create(createFeedbackDto: CreateFeedbackDto, session: Session)
     {
+        createFeedbackDto.patient_email = session['email'];
         const feedback_data = await this.feedbackRepo.create(createFeedbackDto);
         return await this.feedbackRepo.save(feedback_data);
 

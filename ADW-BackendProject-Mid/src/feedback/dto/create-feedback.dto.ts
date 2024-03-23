@@ -2,9 +2,7 @@ import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateFeedbackDto
 {
-    @IsString()
-    @IsNotEmpty()
-    patient_name: string;
+    
 
     @IsString()
     patient_feedback: string;
@@ -16,4 +14,7 @@ export class CreateFeedbackDto
     @IsString()
     @IsNotEmpty()
     feedback_date: string;
+
+   
+    patient_email: string;  
 }

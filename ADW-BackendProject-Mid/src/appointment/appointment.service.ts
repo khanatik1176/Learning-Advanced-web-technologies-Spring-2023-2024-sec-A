@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Appointment } from 'src/entities/appointment.entity';
 import { Repository } from 'typeorm';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
+import {Session} from 'express-session';
 
 @Injectable()
 export class AppointmentService {
@@ -13,8 +14,10 @@ export class AppointmentService {
   ) {}
 
 
-  async create(createAppointmentDto: CreateAppointmentDto)
+  async create(createAppointmentDto: CreateAppointmentDto, session: Session)
   {
+    
+    createAppointmentDto.patient_email = session['email'];
     const appointment_data = await this.Appointmentrepo.create(createAppointmentDto);
     return await this.Appointmentrepo.save(appointment_data);
   }
@@ -38,12 +41,7 @@ export class AppointmentService {
 
   async cancel(id: number)
   {
-    const appointment_Remover = await this.Appointmentrepo.findOne({where: {id:id}})
-    if (!appointment_Remover)
-    {
-      
-
-    }
+    const appointment_Remover = await this.Appointmentrepo.findOne({where: {id:id}});
 
     return await this.Appointmentrepo.remove(appointment_Remover);
   }

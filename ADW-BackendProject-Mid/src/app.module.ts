@@ -5,13 +5,18 @@ import { AppointmentModule } from './appointment/appointment.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FeedbackModule } from './feedback/feedback.module';
 import { HealthTrackerModule } from './health-tracker/health-tracker.module';
-import { PaymentModule } from './payment/payment.module';
 import { SymptomCheckerModule } from './symptom_checker/symptom_checker.module';
+import { MedicalRecordModule } from './medical-record/medical-record.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 import Ormconfig from 'ormconfig';
+import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({
-  imports: [AppointmentModule, TypeOrmModule.forRoot(Ormconfig), FeedbackModule, HealthTrackerModule, PaymentModule, SymptomCheckerModule],
+  imports: [AppointmentModule, TypeOrmModule.forRoot(Ormconfig), FeedbackModule, HealthTrackerModule, SymptomCheckerModule, MedicalRecordModule, AuthModule, UserModule,  MulterModule.register({
+    dest: './uploads',
+  }),],
   controllers: [AppController],
   providers: [AppService],
 })

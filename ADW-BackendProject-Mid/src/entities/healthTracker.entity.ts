@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./user.entity";
 
-@Entity()
+@Entity("healthTrackers")
 export class HealthTracker 
 {
     @PrimaryGeneratedColumn()
@@ -20,5 +21,10 @@ export class HealthTracker
     
     @Column('float', {nullable: true})
     patient_Bmi : number;
+
+    @Column()
+    patient_email: string;
+
+    
 
 }

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty,IsEmail, IsNumber, IsString } from "class-validator";
 
 export class CreateHealthTrackerDto {
 
@@ -18,6 +18,8 @@ export class CreateHealthTrackerDto {
     @IsNotEmpty()
     healthTracker_Status: string;
     
+ 
+    patient_email: string;  
 
 
 

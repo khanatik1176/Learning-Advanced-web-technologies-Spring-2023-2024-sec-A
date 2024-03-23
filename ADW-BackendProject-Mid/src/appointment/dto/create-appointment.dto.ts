@@ -1,10 +1,12 @@
-import { IsAlpha, IsNotEmpty, IsString } from 'class-validator';
+import { IsAlpha, IsEmail, Matches,IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateAppointmentDto {
 
     @IsNotEmpty()
-    @IsAlpha()
     @IsString({ message: 'valid name is required' })
+    @Matches(/^[a-zA-Z .]*$/, {
+        message: 'Fullname can only contain letters, spaces, and periods',
+      })
     doctor_name: string;
 
     @IsNotEmpty()
@@ -15,7 +17,8 @@ export class CreateAppointmentDto {
     @IsString()
     appointment_time: string;
 
-
+    
+    patient_email: string;  
 
 
 

@@ -1,34 +1,49 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe,ParseIntPipe } from '@nestjs/common';
 import { SymptomCheckerService } from './symptom_checker.service';
 import { CreateSymptomCheckerDto } from './dto/create-symptom_checker.dto';
-import { UpdateSymptomCheckerDto } from './dto/update-symptom_checker.dto';
+import { Req } from '@nestjs/common';
+import { Request } from 'express';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from '../auth/gurard/auth.guard';
+import { Roles } from '../decorators/roles.decorator';
+
 
 @Controller('symptom-checker')
 export class SymptomCheckerController {
   constructor(private readonly symptomCheckerService: SymptomCheckerService) {}
 
-  @Post()
-  create(@Body() createSymptomCheckerDto: CreateSymptomCheckerDto) {
-    return this.symptomCheckerService.create(createSymptomCheckerDto);
+  @UseGuards(AuthGuard)
+  @Roles('patient')
+  @Post('add-symptoms')
+  create(@Body(ValidationPipe) createSymptomCheckerDto: CreateSymptomCheckerDto,  @Req() req: Request) {
+    return this.symptomCheckerService.createSymptoms(createSymptomCheckerDto,req.session);
   }
 
-  @Get()
-  findAll() {
+  @UseGuards(AuthGuard)
+  @Roles('patient')
+  @Get('checksymptoms/:id')
+    findOne (@Param('id',ParseIntPipe) id:number)
+    {
+      return this.symptomCheckerService.checkSymptoms(id);
+    } 
+
+  @UseGuards(AuthGuard)
+  @Roles('patient')
+  @Get('View')
+  findAll()
+  {
     return this.symptomCheckerService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.symptomCheckerService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSymptomCheckerDto: UpdateSymptomCheckerDto) {
-    return this.symptomCheckerService.update(+id, updateSymptomCheckerDto);
-  }
-
+  @UseGuards(AuthGuard)
+  @Roles('patient')
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.symptomCheckerService.remove(+id);
-  }
+    async remove(@Param('id',ParseIntPipe) id: number)
+    {
+      await this.symptomCheckerService.remove(id);
+
+      return {message:'Appointment Canceled'};
+
+    }
+
 }

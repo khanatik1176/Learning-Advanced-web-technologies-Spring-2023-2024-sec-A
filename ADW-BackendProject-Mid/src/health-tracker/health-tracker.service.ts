@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { HealthTracker } from 'src/entities/healthtracker.entity';
 import { Repository } from 'typeorm';
 import { UpdateHealthTrackerDto } from './dto/update-health-tracker.dto';
+import {Session} from 'express-session';
 
 @Injectable()
 export class HealthTrackerService {
@@ -15,8 +16,9 @@ export class HealthTrackerService {
   ){}
 
 
-  async enable(createHealthTrackerDto: CreateHealthTrackerDto)
+  async enable(createHealthTrackerDto: CreateHealthTrackerDto, session: Session)
   {
+    createHealthTrackerDto.patient_email = session['email'];
     const healthTracker_data = await this.healthTrackerRepo.create(createHealthTrackerDto);
     return await this.healthTrackerRepo.save(healthTracker_data);
   }
@@ -55,12 +57,16 @@ export class HealthTrackerService {
       status = "Obesity";
     }
 
+    else
+    {
+      status = 'BMI is not applicable for children and young adults';
+    }
 
     return {Bmi , status};
   }
 
 
-  async disable(id:number, updateHealthTrackerDto: UpdateHealthTrackerDto)
+  async modify(id:number, updateHealthTrackerDto: UpdateHealthTrackerDto)
   {
     return await this.healthTrackerRepo.update(id,updateHealthTrackerDto);
   }
