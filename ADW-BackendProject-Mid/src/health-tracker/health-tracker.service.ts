@@ -18,6 +18,7 @@ export class HealthTrackerService {
 
   async enable(createHealthTrackerDto: CreateHealthTrackerDto, session: Session)
   {
+    console.log("Health Tracker Enabled");
     createHealthTrackerDto.patient_email = session['email'];
     const healthTracker_data = await this.healthTrackerRepo.create(createHealthTrackerDto);
     return await this.healthTrackerRepo.save(healthTracker_data);
@@ -25,6 +26,7 @@ export class HealthTrackerService {
 
   async calculateBMI(id:number): Promise<{Bmi: number, status: string}>
   {
+
     const healthTracker_data = await this.healthTrackerRepo.findOne({where:{id:id}});
     const height_InMeters = healthTracker_data.patient_height/100;
     const bmi = (healthTracker_data.patient_weight/(height_InMeters*height_InMeters));
@@ -68,6 +70,7 @@ export class HealthTrackerService {
 
   async modify(id:number, updateHealthTrackerDto: UpdateHealthTrackerDto)
   {
+    console.log("Health Tracker Disabled");
     return await this.healthTrackerRepo.update(id,updateHealthTrackerDto);
   }
 

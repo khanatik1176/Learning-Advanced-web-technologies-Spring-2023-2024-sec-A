@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Auth } from 'src/entities/auth.entity';
 import { Repository } from 'typeorm';
@@ -16,7 +15,6 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 export class AuthService {
 
     constructor(
-        private config: ConfigService,
         @InjectRepository(Auth)
         private authRepo: Repository<Auth>,
         private userService: UserService,
@@ -31,6 +29,7 @@ export class AuthService {
         const auth = await this.authRepo.create({email: user.patient_email, password: user.patient_password, role:'patient'});
         await this.authRepo.save(auth);
         
+        console.log("Signup Successful");
 
         return {auth, user};
     }
@@ -58,6 +57,8 @@ export class AuthService {
 
         if(user_data && (await bcrypt.compare(login_data.password, user_data.password)))
         {
+          console.log("Login Successful");
+          
           session['email'] = user_data.email;
           console.log(session['email']);
 
@@ -72,6 +73,8 @@ export class AuthService {
 
     async forgetPassword(id:number, updateAuthDto: UpdateAuthDto)
     {
-        return await this.authRepo.update(id,updateAuthDto);
+      console.log("Password is chnaged successfully ");
+
+      return await this.authRepo.update(id,updateAuthDto);
     }
 }

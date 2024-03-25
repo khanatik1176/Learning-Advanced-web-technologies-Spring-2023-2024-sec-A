@@ -1,0 +1,18 @@
+{
+  "auth": {
+    "email": "alim21@gmail.com",
+    "password": "$2b$10$BfwGBHO13B4dL8MOJHHeI.TXQShazI4VJ91yjEH/l74hlqWCLp/0G",
+    "role": "patient",
+    "id": 18
+  },
+  "user": {
+    "patient_fullname": "Md. Alim Hossain",
+    "patient_email": "alim21@gmail.com",
+    "patient_date_of_birth": "13-06-1995",
+    "patient_address": "Dhaka",
+    "patient_phone_number": "01877159066",
+    "patient_NID": "1114444551",
+    "patient_password": "AlimK12121",
+    "id": 15
+  }
+}

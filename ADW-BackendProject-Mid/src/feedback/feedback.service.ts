@@ -16,6 +16,7 @@ export class FeedbackService {
 
     async create(createFeedbackDto: CreateFeedbackDto, session: Session)
     {
+        console.log("Feedback Successfully");
         createFeedbackDto.patient_email = session['email'];
         const feedback_data = await this.feedbackRepo.create(createFeedbackDto);
         return await this.feedbackRepo.save(feedback_data);

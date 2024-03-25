@@ -22,6 +22,8 @@ export class MedicalRecordService {
     if (!medicalRecord.filename) {
       throw new Error('Filename is required');
     }
+
+    console.log("File Uploaded Successfully");
     return this.medicalRecordRepo.save(medicalRecord);
   }
   async getFile(filename: string): Promise<MedicalRecord> {

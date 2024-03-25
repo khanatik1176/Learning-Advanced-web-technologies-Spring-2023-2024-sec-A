@@ -18,9 +18,9 @@ export class AuthController {
   }
 
   @Post('signin')
-  async logIn(@Body() data: any, @Req() req : Request )
+  async logIn(@Body() createUserDto: CreateUserDto, @Req() req : Request )
   {
-    return this.authService.logIn(data,req.session);
+    return this.authService.logIn(createUserDto,req.session);
   }
 
   @Put('forgetpassword/:id')

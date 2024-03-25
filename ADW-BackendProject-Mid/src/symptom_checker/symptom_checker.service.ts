@@ -15,6 +15,8 @@ export class SymptomCheckerService {
   ) {}
 
     async createSymptoms(createSymptomCheckerDto: CreateSymptomCheckerDto, session: Session) {
+
+    console.log("Symptoms Stored Successfully");
     
     createSymptomCheckerDto.patient_email = session['email'];
     const symptom_checker_data = await this.symptomCheckerRepo.create(createSymptomCheckerDto);
@@ -24,6 +26,8 @@ export class SymptomCheckerService {
 
     async checkSymptoms(symptom_checker_id: number): Promise<string>
     {
+      console.log("Symptoms Checked Successfully");
+      
       const symptom_checker_data = await this.symptomCheckerRepo.findOne({where:{id:symptom_checker_id}});
       const symptoms_fever = symptom_checker_data.symptoms_1;
       const symptoms_cough = symptom_checker_data.symptoms_2;
