@@ -1,16 +1,18 @@
 const register = () => {
     return (
-        <div>
-            <h1>Registration Page</h1>
+        <div className="register">
+            <h1 reg-title> Registration Page</h1>
             
+            <div className="form-area">
             <form action="">
-                <input type="text" placeholder="First Name"></input>
-                <input type="text" placeholder="Last Name"></input>
-                <input type="email" placeholder="Email"></input>
-                <input type="password" placeholder="Password"></input>
-                <input type="password" placeholder="Confirm Password"></input>
-                <button type="submit">Register</button>
+                <input type="text" placeholder="Name"></input>
+                <input type="text" placeholder="Email"></input>
+                <input type="email" placeholder="Address"></input>
+                <input type="password" placeholder="Phone Number"></input>
+                <input type="password" placeholder="Gender"></input>
+                <button type="submit"className="register-btn" >Register</button>
             </form>
+            </div>
         </div>
     )
 }

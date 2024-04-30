@@ -56,7 +56,7 @@ ul
 .nav-links
 {
   padding: 12px 16px;
-  background-color: green;
+  background-color: rgb(70, 83, 97);
   color: white;
   border-radius: 10px;
 
@@ -64,14 +64,75 @@ ul
 
 .nav-links:hover
 {
-  background-color: rgb(0, 87, 0);
+  background-color: rgb(57, 67, 78);
   transition: 1s all;
   cursor: pointer;
+  color: black;
 }
 
 .logo
 {
   width: 100px;
   height: auto;
+}
+
+body 
+{
+  background-color: whitesmoke
+}
+
+.register
+{
+  text-align: center;
+  margin-top: 100px;
+  font-size: 20px;
+}
+
+.form-area
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid rgb(70, 83, 97);
+  border-radius: 4px;
+
+}
+
+.register-btn
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid rgb(70, 83, 97);
+  border-radius: 4px;
+  background-color: rgb(70, 83, 97);
+  color: white;
+}
+
+.home-Title
+{
+  color: black;
+  font-size: 60px;
+  max-width: 800px;
+  padding-left: 300px;
+  padding-top: 100px;
+}
+
+form,plaaceholder
+{
+  color: black;
 }
 
