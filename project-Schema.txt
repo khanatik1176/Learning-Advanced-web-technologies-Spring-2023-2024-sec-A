@@ -1,0 +1,73 @@
+PostGres password for Pc- faisal macbook-root
+
+Table-Appointments
+
+Columns: 
+
+id
+doctor_name
+appointment_date
+appointment_time
+patient_email(From session)
+userid
+
+Auth:
+
+Columns:
+id
+email
+password
+role
+
+Feedbacks:
+columns:
+id
+patient_feedback
+patient_rating
+feedback_date
+patient_email(From session)
+userid
+
+healthTrackers:
+Columns:
+id,
+patient_height
+patient_weight
+patient_age
+healthTracker_Status
+patient_Bmi
+patient_email(From session)
+
+medical_record:
+columns:
+id,
+originalname
+filename
+patient_email(From session)
+
+symptomCheckers
+columns:
+id,
+symotoms_1
+symotoms_2
+symotoms_3
+symotoms_4
+symotoms_5
+symotoms_6
+symotoms_7
+symotoms_8
+symotoms_9
+symptom_Status
+patient_email(From session)
+userid
+
+user:
+column:
+id,
+patient_fullname
+patient_email
+patient_date_of_birth
+patient_address
+patient_phone_number
+patient_NID
+patient_password
